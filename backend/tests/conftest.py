@@ -4,6 +4,14 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+import sys
+from pathlib import Path
+
+# Ensure backend directory is in sys.path when running tests from project root
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
 from app.database import Base, get_db
 from app.main import app
 from app.models.user import User
