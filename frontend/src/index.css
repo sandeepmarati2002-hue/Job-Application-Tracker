@@ -1,0 +1,348 @@
+/* ==========================================================================
+   Design System & Global Styles: JobTrack
+   Font: Plus Jakarta Sans
+   Palette: Indigo / Slate / Status Semantics
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Brand Colors */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #eef2ff;
+  --primary-focus: rgba(79, 70, 229, 0.25);
+  
+  --accent: #0ea5e9;
+  --accent-light: #f0f9ff;
+  
+  /* Surfaces & Backgrounds */
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f1f5f9;
+  --bg-subtle: #f8fafc;
+  
+  /* Borders */
+  --border-light: #e2e8f0;
+  --border-focus: #6366f1;
+  
+  /* Text & Content */
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --text-white: #ffffff;
+  
+  /* Semantic Status Colors (6 Standard Application States) */
+  --status-applied-text: #1d4ed8;
+  --status-applied-bg: #eff6ff;
+  --status-applied-border: #bfdbfe;
+  
+  --status-assessment-text: #7e22ce;
+  --status-assessment-bg: #faf5ff;
+  --status-assessment-border: #e9d5ff;
+  
+  --status-interview-text: #b45309;
+  --status-interview-bg: #fffbeb;
+  --status-interview-border: #fde68a;
+  
+  --status-offer-text: #047857;
+  --status-offer-bg: #ecfdf5;
+  --status-offer-border: #a7f3d0;
+  
+  --status-rejected-text: #be123c;
+  --status-rejected-bg: #fff1f2;
+  --status-rejected-border: #fecdd3;
+  
+  --status-withdrawn-text: #475569;
+  --status-withdrawn-bg: #f1f5f9;
+  --status-withdrawn-border: #cbd5e1;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-glow: 0 0 20px -5px rgba(79, 70, 229, 0.3);
+
+  /* Border Radiuses */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg-page: #090d16;
+  --bg-surface: #111827;
+  --bg-surface-hover: #1f2937;
+  --bg-subtle: #172033;
+  --border-light: #1f293d;
+  --border-focus: #818cf8;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --primary-light: rgba(99, 102, 241, 0.18);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6);
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.25);
+  
+  --status-applied-bg: rgba(29, 78, 216, 0.2);
+  --status-applied-text: #93c5fd;
+  --status-applied-border: rgba(96, 165, 250, 0.35);
+
+  --status-assessment-bg: rgba(126, 34, 206, 0.2);
+  --status-assessment-text: #d8b4fe;
+  --status-assessment-border: rgba(192, 132, 252, 0.35);
+
+  --status-interview-bg: rgba(180, 83, 9, 0.2);
+  --status-interview-text: #fde047;
+  --status-interview-border: rgba(251, 191, 36, 0.35);
+
+  --status-offer-bg: rgba(4, 120, 87, 0.2);
+  --status-offer-text: #6ee7b7;
+  --status-offer-border: rgba(52, 211, 153, 0.35);
+
+  --status-rejected-bg: rgba(190, 18, 60, 0.2);
+  --status-rejected-text: #fca5a5;
+  --status-rejected-border: rgba(248, 113, 113, 0.35);
+
+  --status-withdrawn-bg: rgba(71, 85, 105, 0.25);
+  --status-withdrawn-text: #cbd5e1;
+  --status-withdrawn-border: rgba(148, 163, 184, 0.35);
+}
+
+/* Base CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Reusable UI Components */
+
+/* Status Badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.status-badge.Applied {
+  color: var(--status-applied-text);
+  background: var(--status-applied-bg);
+  border-color: var(--status-applied-border);
+}
+
+.status-badge.Assessment {
+  color: var(--status-assessment-text);
+  background: var(--status-assessment-bg);
+  border-color: var(--status-assessment-border);
+}
+
+.status-badge.Interview {
+  color: var(--status-interview-text);
+  background: var(--status-interview-bg);
+  border-color: var(--status-interview-border);
+}
+
+.status-badge.Offer {
+  color: var(--status-offer-text);
+  background: var(--status-offer-bg);
+  border-color: var(--status-offer-border);
+}
+
+.status-badge.Rejected {
+  color: var(--status-rejected-text);
+  background: var(--status-rejected-bg);
+  border-color: var(--status-rejected-border);
+}
+
+.status-badge.Withdrawn {
+  color: var(--status-withdrawn-text);
+  background: var(--status-withdrawn-bg);
+  border-color: var(--status-withdrawn-border);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--text-white);
+  box-shadow: 0 1px 3px 0 rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-main);
+  border-color: var(--border-light);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--text-muted);
+}
+
+.btn-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+.btn-danger:hover {
+  background: #fca5a5;
+}
+
+/* Cards */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+/* Form Controls */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-focus);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Modal Backdrop & Dialog */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-dialog {
+  background: var(--bg-surface);
+  width: 100%;
+  max-width: 560px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.modal-body {
+  padding: 24px;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg-subtle);
+  border-top: 1px solid var(--border-light);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
