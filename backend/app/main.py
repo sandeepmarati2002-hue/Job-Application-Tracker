@@ -7,11 +7,13 @@ from app.database import engine, Base, get_db
 import app.models  # Ensures all ORM models are registered with Base metadata
 
 # Automatically create database tables on startup if they do not exist
-Base.metadata.create_all(bind=engine)
-
-# Seed demo data if database is fresh
-from app.seed import seed_database
-seed_database()
+try:
+    Base.metadata.create_all(bind=engine)
+    # Seed demo data if database is fresh
+    from app.seed import seed_database
+    seed_database()
+except Exception as e:
+    print(f"Database initialization warning (safe to ignore if using existing DB): {e}")
 
 # Initialize the FastAPI Application instance
 app = FastAPI(
