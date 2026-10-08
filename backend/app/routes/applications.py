@@ -6,13 +6,13 @@ from typing import List, Optional
 import csv
 import io
 
-from backend.app.database import get_db
-from backend.app.models.user import User
-from backend.app.models.application import Application
-from backend.app.models.interview import Interview
-from backend.app.schemas.application import ApplicationCreate, ApplicationUpdate, ApplicationOut
-from backend.app.schemas.interview import InterviewCreate, InterviewOut
-from backend.app.services.auth import get_current_user
+from app.database import get_db
+from app.models.user import User
+from app.models.application import Application
+from app.models.interview import Interview
+from app.schemas.application import ApplicationCreate, ApplicationUpdate, ApplicationOut
+from app.schemas.interview import InterviewCreate, InterviewOut
+from app.services.auth import get_current_user
 
 router = APIRouter(prefix="/applications", tags=["Applications"])
 

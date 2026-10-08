@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from backend.app.database import get_db
-from backend.app.models.user import User
-from backend.app.models.application import Application
-from backend.app.models.interview import Interview
-from backend.app.schemas.interview import InterviewOut, InterviewUpdate
-from backend.app.services.auth import get_current_user
+from app.database import get_db
+from app.models.user import User
+from app.models.application import Application
+from app.models.interview import Interview
+from app.schemas.interview import InterviewOut, InterviewUpdate
+from app.services.auth import get_current_user
 
 router = APIRouter(prefix="/interviews", tags=["Interviews"])
 

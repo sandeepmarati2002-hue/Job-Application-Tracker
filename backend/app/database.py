@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
-from backend.app.config import settings
+from app.config import settings
 
 # If using SQLite, check_same_thread must be False because FastAPI handles requests across multiple threads
 connect_args = {"check_same_thread": False} if settings.DATABASE_URL.startswith("sqlite") else {}

@@ -4,10 +4,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from backend.app.database import Base, get_db
-from backend.app.main import app
-from backend.app.models.user import User
-from backend.app.services.auth import hash_password, create_access_token
+from app.database import Base, get_db
+from app.main import app
+from app.models.user import User
+from app.services.auth import hash_password, create_access_token
 
 # In-memory SQLite database isolated per test session
 SQLALCHEMY_TEST_DATABASE_URL = "sqlite:///:memory:"

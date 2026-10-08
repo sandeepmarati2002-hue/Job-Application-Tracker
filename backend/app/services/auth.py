@@ -6,9 +6,9 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
 
-from backend.app.config import settings
-from backend.app.database import get_db
-from backend.app.models.user import User
+from app.config import settings
+from app.database import get_db
+from app.models.user import User
 
 # Optional bearer token extraction to support both token auth and seamless local/demo mode
 security = HTTPBearer(auto_error=False)

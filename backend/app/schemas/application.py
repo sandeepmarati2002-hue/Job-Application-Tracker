@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional, List, Literal
 from datetime import date, datetime
-from backend.app.schemas.interview import InterviewOut
+from app.schemas.interview import InterviewOut
 
 ApplicationStatusType = Literal["Applied", "Assessment", "Interview", "Offer", "Rejected", "Withdrawn"]
 

@@ -2,15 +2,15 @@ from fastapi import FastAPI, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy import text
-from backend.app.config import settings
-from backend.app.database import engine, Base, get_db
-import backend.app.models  # Ensures all ORM models are registered with Base metadata
+from app.config import settings
+from app.database import engine, Base, get_db
+import app.models  # Ensures all ORM models are registered with Base metadata
 
 # Automatically create database tables on startup if they do not exist
 Base.metadata.create_all(bind=engine)
 
 # Seed demo data if database is fresh
-from backend.app.seed import seed_database
+from app.seed import seed_database
 seed_database()
 
 # Initialize the FastAPI Application instance
@@ -32,7 +32,7 @@ app.add_middleware(
 )
 
 # Mount Routers
-from backend.app.routes import auth_router, applications_router, interviews_router, dashboard_router
+from app.routes import auth_router, applications_router, interviews_router, dashboard_router
 app.include_router(auth_router)
 app.include_router(applications_router)
 app.include_router(interviews_router)
@@ -75,4 +75,4 @@ def health_check(db: Session = Depends(get_db)):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.app.main:app", host="127.0.0.1", port=settings.PORT, reload=True)
+    uvicorn.run("app.main:app", host="127.0.0.1", port=settings.PORT, reload=True)

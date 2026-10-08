@@ -1,10 +1,10 @@
 from datetime import date, datetime, timezone
 from sqlalchemy.orm import Session
-from backend.app.database import SessionLocal, engine, Base
-from backend.app.models.user import User
-from backend.app.models.application import Application
-from backend.app.models.interview import Interview
-from backend.app.services.auth import hash_password
+from app.database import SessionLocal, engine, Base
+from app.models.user import User
+from app.models.application import Application
+from app.models.interview import Interview
+from app.services.auth import hash_password
 
 
 def seed_database(db: Session = None):

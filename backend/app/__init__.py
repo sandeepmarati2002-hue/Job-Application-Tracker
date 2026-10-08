@@ -1,4 +1,4 @@
 # Application package
-from backend.app.main import app
+from app.main import app
 
 __all__ = ["app"]

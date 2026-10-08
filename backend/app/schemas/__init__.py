@@ -1,7 +1,7 @@
-from backend.app.schemas.user import UserCreate, UserLogin, UserOut, Token, TokenData
-from backend.app.schemas.application import ApplicationCreate, ApplicationUpdate, ApplicationOut
-from backend.app.schemas.interview import InterviewCreate, InterviewUpdate, InterviewOut
-from backend.app.schemas.dashboard import DashboardSummaryOut
+from app.schemas.user import UserCreate, UserLogin, UserOut, Token, TokenData
+from app.schemas.application import ApplicationCreate, ApplicationUpdate, ApplicationOut
+from app.schemas.interview import InterviewCreate, InterviewUpdate, InterviewOut
+from app.schemas.dashboard import DashboardSummaryOut
 
 __all__ = [
     "UserCreate",
