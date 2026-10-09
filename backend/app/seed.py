@@ -162,6 +162,173 @@ def seed_database(db: Session = None):
                 description="Submitted application on careers portal with customized resume.",
             )
             db.add(app5)
+            db.flush()
+
+            app6 = Application(
+                user_id=user.id,
+                company="Uber",
+                role="Software Development Engineer (Backend)",
+                location="Bangalore, India",
+                salary="₹24,00,000/year",
+                job_url="https://uber.com/careers",
+                status="Interview",
+                application_date=date(2026, 9, 20),
+                description="Referred by Tech Lead for Core Services team (Go / Kafka / Microservices).",
+            )
+            db.add(app6)
+            db.flush()
+
+            db.add_all([
+                Interview(
+                    application_id=app6.id,
+                    interview_type="Online Assessment (OA)",
+                    interview_date=datetime(2026, 9, 25, 14, 0, 0, tzinfo=timezone.utc),
+                    interviewer="HackerRank",
+                    notes="3 Algorithmic problems on graphs, heaps, and string manipulation. All test cases passed.",
+                    result="Passed",
+                ),
+                Interview(
+                    application_id=app6.id,
+                    interview_type="Technical Round 1 (DSA)",
+                    interview_date=datetime(2026, 10, 6, 11, 0, 0, tzinfo=timezone.utc),
+                    interviewer="Arjun Nair (Senior SDE)",
+                    notes="Concurrency problem on rate limiter and LRU cache with TTL.",
+                    result="Passed",
+                ),
+                Interview(
+                    application_id=app6.id,
+                    interview_type="System Design Round",
+                    interview_date=datetime(2026, 10, 15, 15, 0, 0, tzinfo=timezone.utc),
+                    interviewer="Staff Engineer",
+                    notes="Design Uber Ride Matching service with real-time geospatial indexing.",
+                    result="Pending",
+                ),
+            ])
+
+            app7 = Application(
+                user_id=user.id,
+                company="Stripe",
+                role="Full Stack Engineer - Developer Infrastructure",
+                location="Remote, India",
+                salary="₹28,00,000/year",
+                job_url="https://stripe.com/jobs",
+                status="Assessment",
+                application_date=date(2026, 10, 1),
+                description="Applied directly through Stripe jobs page. Resume screened.",
+            )
+            db.add(app7)
+            db.flush()
+
+            db.add(
+                Interview(
+                    application_id=app7.id,
+                    interview_type="Take-home Technical Assessment",
+                    interview_date=datetime(2026, 10, 10, 16, 0, 0, tzinfo=timezone.utc),
+                    interviewer="Stripe Automated Suite",
+                    notes="Building an idempotent webhook event consumer with retry backoff.",
+                    result="Pending",
+                )
+            )
+
+            app8 = Application(
+                user_id=user.id,
+                company="Swiggy",
+                role="SDE-2 (Platform Engineering)",
+                location="Bangalore, India",
+                salary="₹26,00,000/year",
+                job_url="https://swiggy.com/careers",
+                status="Offer",
+                application_date=date(2026, 8, 15),
+                description="Official offer letter received for the Delivery Fulfillment Platform team.",
+            )
+            db.add(app8)
+            db.flush()
+
+            db.add_all([
+                Interview(
+                    application_id=app8.id,
+                    interview_type="Online Assessment (OA)",
+                    interview_date=datetime(2026, 8, 20, 10, 0, 0, tzinfo=timezone.utc),
+                    interviewer="Mettl",
+                    notes="DP and Segment Trees. 100% score.",
+                    result="Passed",
+                ),
+                Interview(
+                    application_id=app8.id,
+                    interview_type="Technical Round 1 (DSA & Low-Level Design)",
+                    interview_date=datetime(2026, 8, 28, 14, 0, 0, tzinfo=timezone.utc),
+                    interviewer="Vikram Shenoy",
+                    notes="Designed Splitwise application with clean SOLID principles.",
+                    result="Passed",
+                ),
+                Interview(
+                    application_id=app8.id,
+                    interview_type="Technical Round 2 (High-Level System Design)",
+                    interview_date=datetime(2026, 9, 4, 16, 0, 0, tzinfo=timezone.utc),
+                    interviewer="Principal Architect",
+                    notes="Real-time order tracking architecture with WebSockets & Redis Pub/Sub.",
+                    result="Passed",
+                ),
+                Interview(
+                    application_id=app8.id,
+                    interview_type="Bar Raiser / Culture Fit",
+                    interview_date=datetime(2026, 9, 10, 11, 30, 0, tzinfo=timezone.utc),
+                    interviewer="VP of Engineering",
+                    notes="Discussion on mentorship, leadership, and operational incident resolution.",
+                    result="Passed",
+                ),
+            ])
+
+            app9 = Application(
+                user_id=user.id,
+                company="Flipkart",
+                role="Software Development Engineer - I",
+                location="Bangalore, India",
+                salary="₹17,50,000/year",
+                job_url="https://flipkartcareers.com",
+                status="Applied",
+                application_date=date(2026, 10, 4),
+                description="Applied via campus recruitment drive for Big Billion Days scaling operations.",
+            )
+            db.add(app9)
+
+            app10 = Application(
+                user_id=user.id,
+                company="Oracle",
+                role="Cloud Software Engineer",
+                location="Hyderabad, India",
+                salary="₹15,00,000/year",
+                job_url="https://oracle.com/careers",
+                status="Withdrawn",
+                application_date=date(2026, 9, 1),
+                description="Decided to withdraw after receiving competing offers with better alignment.",
+            )
+            db.add(app10)
+            db.flush()
+
+            db.add(
+                Interview(
+                    application_id=app10.id,
+                    interview_type="Online Assessment (OA)",
+                    interview_date=datetime(2026, 9, 8, 11, 0, 0, tzinfo=timezone.utc),
+                    interviewer="HackerRank",
+                    notes="SQL queries and Java fundamentals.",
+                    result="Passed",
+                )
+            )
+
+            app11 = Application(
+                user_id=user.id,
+                company="Zomato",
+                role="Backend Engineer (Python / Go)",
+                location="Gurgaon, India (Hybrid)",
+                salary="₹20,00,000/year",
+                job_url="https://zomato.com/careers",
+                status="Applied",
+                application_date=date(2026, 10, 7),
+                description="Applied for Dineline and Live events backend microservices.",
+            )
+            db.add(app11)
 
             db.commit()
             print("Successfully seeded demo data!")

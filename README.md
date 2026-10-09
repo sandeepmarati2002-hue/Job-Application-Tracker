@@ -1,5 +1,8 @@
 # 🎯 JobTrack — Production Job Application Tracker
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-blue?style=for-the-badge&logo=vercel)](https://frontend-six-henna-96.vercel.app)  
+**Live Demo:** [https://frontend-six-henna-96.vercel.app](https://frontend-six-henna-96.vercel.app)
+
 A modern, full-stack application designed to streamline job hunting, interview tracking, and conversion analytics for engineers and students. Built with **React + Vite**, **FastAPI**, **SQLAlchemy**, **SQLite/PostgreSQL**, and **JWT Authentication**.
 
 ---
@@ -30,9 +33,25 @@ A modern, full-stack application designed to streamline job hunting, interview t
 - **Export as JSON**: Full data backup including nested interview histories.
 - **Backend CSV Stream**: Direct `/applications/export/csv` streaming endpoint.
 
-### 6. 🔐 JWT Authentication & Local Fallback
+### 6. 🔐 JWT Authentication
 - Secure registration and login with `bcrypt` password hashing and signed JWT tokens (`HS256`).
-- Frictionless demo mode: Automatically defaults to demo candidate `Sandeep Kumar` when testing locally without requiring upfront login.
+- Protected API routes and token authentication.
+
+---
+
+## 📸 Screenshots
+
+| 📊 Dashboard & Recruitment Funnel |
+|:---:|
+| ![Dashboard Overview](screenshots/dashboard.png) |
+
+| 🗂️ Kanban Board (Dual View) |
+|:---:|
+| ![Kanban Board](screenshots/kanban.png) |
+
+| 📅 Interview Timeline & Round Tracking |
+|:---:|
+| ![Interview Timeline](screenshots/interviews.png) |
 
 ---
 
@@ -51,6 +70,7 @@ Job Application Tracker/
 │   │   ├── seed.py         # Initial sample seed data
 │   │   └── main.py         # FastAPI application entrypoint
 │   ├── tests/              # 13 Automated Pytest integration tests
+│   ├── vercel.json         # Standalone Vercel backend routing
 │   └── requirements.txt    # Python dependencies
 ├── frontend/
 │   ├── src/
@@ -61,8 +81,8 @@ Job Application Tracker/
 │   │   ├── App.css         # Component styling & animations
 │   │   └── index.css       # Design tokens & dark/light theme CSS variables
 │   └── package.json
-└── docs/
-    └── schema.sql          # Canonical PostgreSQL / SQLite schema
+├── screenshots/            # Application UI screenshots
+└── vercel.json             # Root monorepo Vercel routing
 ```
 
 ---
@@ -79,9 +99,15 @@ Job Application Tracker/
 .\venv\Scripts\activate   # Windows
 source venv/bin/activate  # macOS / Linux
 
-# Run backend server with reload
-python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000 --reload
+# Navigate to backend directory and start server
+cd backend
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
+> *Alternatively, from the repository root:*
+> ```bash
+> python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000 --reload
+> ```
+
 API Documentation will be available at:
 - **Swagger UI**: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 - **ReDoc**: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
@@ -90,7 +116,7 @@ API Documentation will be available at:
 ```bash
 cd frontend
 npm install
-npm run dev -- --host 127.0.0.1 --port 5173
+npm run dev
 ```
 Open [http://127.0.0.1:5173](http://127.0.0.1:5173) in your browser.
 
@@ -109,3 +135,4 @@ All 13 tests cover:
 - CSV export streaming
 - Round-by-round interview logging and cascade deletion
 - Real-time dashboard metric calculation
+
