@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:////tmp/job_tracker.db" if os.environ.get("VERCEL") else "sqlite:///./job_tracker.db"
     
     # CORS Allowed Origins (Comma-separated string)
-    ALLOWED_ORIGINS: str = "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000"
+    ALLOWED_ORIGINS: str = "http://localhost:5173,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:3000,https://frontend-six-henna-96.vercel.app"
 
     model_config = SettingsConfigDict(
         env_file=str(ENV_FILE) if ENV_FILE.exists() else ".env",

@@ -24,10 +24,20 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# Configure Cross-Origin Resource Sharing (CORS) using settings
+# Configure Cross-Origin Resource Sharing (CORS)
+# Ensure local and production frontend origins are explicitly allowed (never use wildcard with credentials)
+cors_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://frontend-six-henna-96.vercel.app",
+]
+for origin in settings.cors_origins:
+    if origin != "*" and origin not in cors_origins:
+        cors_origins.append(origin)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -3,7 +3,7 @@
  * Base URL: http://127.0.0.1:8000
  */
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+export const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 // Helper to retrieve auth token
 const getAuthHeaders = () => {
@@ -16,7 +16,7 @@ const getAuthHeaders = () => {
 
 // Generic fetch wrapper with clean error extraction
 async function request(endpoint, options = {}) {
-  const url = `${API_BASE_URL}${endpoint}`;
+  const url = `${API_URL}${endpoint}`;
   const config = {
     ...options,
     headers: {
@@ -50,7 +50,7 @@ async function request(endpoint, options = {}) {
 // 1. Health & Status
 export const checkHealth = async () => {
   try {
-    const res = await fetch(`${API_BASE_URL}/health`);
+    const res = await fetch(`${API_URL}/health`);
     if (!res.ok) return { online: false };
     const data = await res.json();
     return { online: true, ...data };
