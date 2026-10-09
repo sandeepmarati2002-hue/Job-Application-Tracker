@@ -11,4 +11,5 @@ if str(BACKEND_DIR) not in sys.path:
 
 from app.main import app
 
-__all__ = ["app"]
+handler = app
+__all__ = ["app", "handler"]

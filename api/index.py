@@ -36,7 +36,36 @@ except Exception as e1:
     try:
         from backend.app.main import app
     except Exception as e2:
-        raise RuntimeError(f"Failed to import app. Error 1: {e1}; Error 2: {e2}") from e2
+        import json
+        import traceback
+
+        err_detail = {
+            "error": "Failed to import FastAPI application on Vercel",
+            "error_app": str(e1),
+            "error_backend_app": str(e2),
+            "traceback": traceback.format_exc(),
+            "sys_path": sys.path,
+            "cwd": str(Path.cwd()),
+        }
+
+        # Fallback ASGI application returning diagnostic info instead of crashing runtime
+        async def fallback_app(scope, receive, send):
+            if scope["type"] == "http":
+                body = json.dumps(err_detail, indent=2).encode("utf-8")
+                await send({
+                    "type": "http.response.start",
+                    "status": 500,
+                    "headers": [
+                        [b"content-type", b"application/json"],
+                        [b"content-length", str(len(body)).encode("utf-8")],
+                    ],
+                })
+                await send({
+                    "type": "http.response.body",
+                    "body": body,
+                })
+
+        app = fallback_app
 
 # Export both app and handler for Vercel Serverless runtimes
 handler = app

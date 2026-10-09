@@ -15,6 +15,19 @@ try:
 except Exception as e:
     print(f"Database initialization warning (safe to ignore if using existing DB): {e}")
 
+from contextlib import asynccontextmanager
+
+# Define lifespan event handler for startup table creation
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        Base.metadata.create_all(bind=engine)
+        from app.seed import seed_database
+        seed_database()
+    except Exception as e:
+        print(f"Startup database initialization warning: {e}")
+    yield
+
 # Initialize the FastAPI Application instance
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -22,6 +35,7 @@ app = FastAPI(
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc",
+    lifespan=lifespan,
 )
 
 # Configure Cross-Origin Resource Sharing (CORS)
@@ -57,32 +71,15 @@ def root():
     """
     Root endpoint to verify the API server is online.
     """
-    return {
-        "status": "online",
-        "message": f"Welcome to {settings.PROJECT_NAME}",
-        "environment": settings.ENVIRONMENT,
-        "docs_url": "/docs",
-        "version": "1.0.0",
-    }
+    return {"status": "ok"}
 
 
 @app.get("/health", tags=["Health"], status_code=status.HTTP_200_OK)
-def health_check(db: Session = Depends(get_db)):
+def health_check():
     """
-    Health check endpoint that verifies server and database connection pool.
+    Health check endpoint to verify server is online.
     """
-    db_status = "connected"
-    try:
-        # Perform a lightweight ping query
-        db.execute(text("SELECT 1"))
-    except Exception as e:
-        db_status = f"unhealthy: {str(e)}"
-
-    return {
-        "status": "healthy",
-        "database": db_status,
-        "environment": settings.ENVIRONMENT,
-    }
+    return {"status": "ok"}
 
 
 if __name__ == "__main__":
