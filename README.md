@@ -2,7 +2,7 @@
 
 A full-stack web app to track job applications through a drag-and-drop Kanban pipeline, log interview rounds, and see how your job search is going on a dashboard.
 
-**Live Demo:** https://your-app.vercel.app
+**Live Demo:** https://frontend-six-henna-96.vercel.app/
 **GitHub:** https://github.com/sandeepmarati2002-hue/Job-Application-Tracker
 
 ## Features
